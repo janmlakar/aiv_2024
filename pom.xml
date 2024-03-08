@@ -4,10 +4,10 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>si.feri</groupId>
-	<artifactId>KISSProjectMD</artifactId>
+	<artifactId>MSE_Jan</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>jakarta.platform</groupId>
@@ -18,7 +18,7 @@
 	</dependencies>
 	
 	<build>
-		<finalName>KISSProjectMD</finalName>
+		<finalName>MSE_Jan</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.wildfly.plugins</groupId>
