@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
-import si.um.feri.aiv.vao.Kontakt;
 import si.um.feri.aiv.vao.Oseba;
 
 public class OsebaMemoryDao implements OsebaDao {
@@ -57,26 +56,4 @@ public class OsebaMemoryDao implements OsebaDao {
 				i.remove();
 		}
 	}
-	
-	@Override
-	public void izbrisiKontakt(int idKontakta, String emailOsebe) {
-		log.info("DAO: brišem kontakt "+idKontakta+" osebe "+emailOsebe);
-		Oseba najdena=najdi(emailOsebe);
-		if (najdena==null) return;
-		for (Iterator<Kontakt> i = najdena.getKontakti().iterator(); i.hasNext();) {
-			if (i.next().getId()==idKontakta)
-				i.remove();
-		}
-	}
-	
-	@Override
-	public void shraniKontakt(Kontakt k, String emailOsebe) {
-		log.info("DAO: shranjujem kontakt "+k+" osebi "+emailOsebe);
-		Oseba najdena=najdi(emailOsebe);
-		if (najdena==null) return;
-		izbrisiKontakt(k.getId(), emailOsebe);
-		k.setId(najdena.getMaxKontaktId()+1);
-		najdena.getKontakti().add(k);
-	}
-
 }

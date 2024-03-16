@@ -10,17 +10,18 @@
 <f:view>
 <h:form>
 
-	[ <a href="#{facesContext.externalContext.applicationContextPath}/faces/vse.xhtml">Vse osebe</a> |
-	  <a href="#{facesContext.externalContext.applicationContextPath}/faces/urejanje.xhtml?email=NULL">Dodajanje</a> ]
+	[ <a href="#{facesContext.externalContext.applicationContextPath}/faces/vse.xhtml">Vse skupnosti</a> |
+	  <a href="#{facesContext.externalContext.applicationContextPath}/faces/urejanje.xhtml?email=NULL">Dodaj</a> ]
 	<hr />
 
 	<f:metadata>
 		<f:viewParam name="email" value="#{demo.izbranEmail}" />
 	</f:metadata>
-	
-	Ime: <h:inputText id="n_ime" value="#{demo.izbranaOseba.ime}"/><br/>
-	Priimek: <h:inputText id="n_priimek" value="#{demo.izbranaOseba.priimek}"/><br/>
-	E-mail: <h:inputText id="n_email" value="#{demo.izbranaOseba.email}" validatorMessage="Vnesite ustrezen e-mail naslov">
+	<!-- Tu bom shranjeval vse v skupnost class ki sem ga ustvaro, skrbnik posebej ne rabim shranjevat, rabim le lastnike kasneje -->
+	Naziv skupnosti: <h:inputText id="sku_naziv" /> <br/>  
+	Ime skrbnika: <h:inputText id="n_ime" value="#{demo.izbranaOseba.ime}"/><br/>
+	Priimek skrbnika: <h:inputText id="n_priimek" value="#{demo.izbranaOseba.priimek}"/><br/>
+	E-mail skrbnika: <h:inputText id="n_email" value="#{demo.izbranaOseba.email}" validatorMessage="Vnesite ustrezen e-mail naslov">
 				<f:validateRequired />
 			</h:inputText> * <h:message for="n_email" style="color:red" />
 	<br/><br/>

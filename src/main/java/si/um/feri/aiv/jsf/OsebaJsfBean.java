@@ -7,7 +7,6 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import si.um.feri.aiv.dao.OsebaDao;
 import si.um.feri.aiv.dao.OsebaMemoryDao;
-import si.um.feri.aiv.vao.Kontakt;
 import si.um.feri.aiv.vao.Oseba;
 
 @Named("demo")
@@ -35,28 +34,6 @@ public class OsebaJsfBean implements Serializable {
 	
 	public void izbrisiOsebo(Oseba o) throws Exception {
 		dao.izbrisi(o.getEmail());
-	}
-
-	public void dodajKontakt() throws Exception {
-		dao.shraniKontakt(new Kontakt(), izbranaOseba.getEmail());
-		izbranaOseba=dao.najdi(izbranaOseba.getEmail());
-	}
-
-	public void shraniKontakt(Kontakt k) throws Exception {
-		k.setUrejanje(false);
-		dao.shraniKontakt(k, izbranaOseba.getEmail());
-		izbranaOseba=dao.najdi(izbranaOseba.getEmail());
-	}
-	
-	public void izbrisiKontakt(Kontakt k) throws Exception {
-		dao.izbrisiKontakt(k.getId(), izbranaOseba.getEmail());
-		izbranaOseba=dao.najdi(izbranaOseba.getEmail());
-	}
-	
-	public void urediKontakt(Kontakt k) throws Exception {
-		k.setUrejanje(true);
-		dao.shraniKontakt(k, izbranaOseba.getEmail());
-		izbranaOseba=dao.najdi(izbranaOseba.getEmail());
 	}
 	
 	public void setIzbranEmail(String email) throws Exception {

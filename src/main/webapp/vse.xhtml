@@ -3,26 +3,33 @@
 
 <h:head>
 	<meta charset="UTF-8" />
-	<title>Keep It Simple &amp; Stupid</title>
+	<title>MSE - Male Sončne Elektrarne</title>
 </h:head>
 
 <h:body>
 <f:view>
 <h:form>
 
-	[ <a href="#{facesContext.externalContext.applicationContextPath}/faces/vse.xhtml">Vse osebe</a> |
-	  <a href="#{facesContext.externalContext.applicationContextPath}/faces/urejanje.xhtml?email=NULL">Dodajanje</a> ]
+	[ <a href="#{facesContext.externalContext.applicationContextPath}/faces/vse.xhtml">Vse skupnosti</a> |
+	  <a href="#{facesContext.externalContext.applicationContextPath}/faces/urejanje.xhtml?email=NULL">Dodaj</a> ]
 	<hr />
 
 	<h:dataTable value="#{demo.vseOsebe}" var="o">
 		<h:column>
+			<h:link value="" outcome="">
+				<f:param name="naziv_sku" value="" />
+			</h:link>
+		</h:column>
+		<h:column>| Ime skrbnika: #{o.ime}</h:column>
+		<h:column>| Priimek skrbnika: #{o.priimek}</h:column>
+		<h:column>
+		| E-mail skrbnika: 
 			<h:link value="#{o.email}" outcome="podrobnosti">
 				<f:param name="email" value="#{o.email}" />
 			</h:link>
 		</h:column>
-		<h:column>#{o.priimek}</h:column>
-		<h:column>#{o.ime}</h:column>
 		<h:column>
+		| 
 			<h:link value="Uredi" outcome="urejanje">
 				<f:param name="email" value="#{o.email}" />
 			</h:link> | 
