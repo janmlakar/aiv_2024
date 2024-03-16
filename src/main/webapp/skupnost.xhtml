@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Keep It Simple &amp; Stupid</title>
+</h:head>
+
+<h:body>
+<f:view>
+<h:form>
+
+	[ <a href="#{facesContext.externalContext.applicationContextPath}/faces/skupnosti.xhtml">Vse skupnosti</a> |
+	  <a href="#{facesContext.externalContext.applicationContextPath}/faces/skupnost.xhtml?naziv=NULL">Dodaj</a> ]
+	<hr />
+
+	<f:metadata>
+		<f:viewParam name="naziv" value="#{beta.izbranNaziv}" />
+	</f:metadata>
+
+	Naziv skupnosti: <h:inputText id="s_naziv" value="#{beta.izbranaSkupnost.naziv}" /> <br/>  
+	Ime skrbnika: <h:inputText id="s_ime" value="#{beta.izbranaSkupnost.ime}"/><br/>
+	Priimek skrbnika: <h:inputText id="s_priimek" value="#{beta.izbranaSkupnost.priimek}"/><br/>
+	E-mail skrbnika: <h:inputText id="s_email" value="#{beta.izbranaSkupnost.email}" validatorMessage="Vnesite ustrezen e-mail naslov">
+				<f:validateRequired />
+			</h:inputText> * <h:message for="s_email" style="color:red" />
+	<br/><br/>
+	<h:commandButton value="Shrani" action="#{beta.shraniSkupnost()}"/>
+	
+</h:form>
+</f:view>
+</h:body>
+
+</html>
+
+
+
+				
+					

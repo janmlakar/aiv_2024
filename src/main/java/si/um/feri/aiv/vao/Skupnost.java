@@ -1,21 +1,24 @@
 package si.um.feri.aiv.vao;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class Skupnost {
 
+	@NotBlank
 	private String naziv;
-	private Skrbnik ime;
-	private Skrbnik priimek;
-	private Skrbnik email;
+	private String ime;
+	private String priimek;
+	private String email;
 	
 	public Skupnost() {
-		
+		this("","","","");
 	}
 	
-	public Skupnost(String naziv, Skrbnik ime, Skrbnik priimek, Skrbnik email) {
-		naziv=this.naziv;
-		ime=this.ime;
-		priimek=this.priimek;
-		email=this.email;
+	public Skupnost(String naziv, String ime, String priimek, String email) {
+		this.naziv = naziv;
+		this.ime = ime;
+		this.priimek = priimek;
+		this.email = email;
 	}
 
 	public String getNaziv() {
@@ -26,29 +29,34 @@ public class Skupnost {
 		this.naziv = naziv;
 	}
 
-	public Skrbnik getIme() {
+	public String getIme() {
 		return ime;
 	}
 
-	public void setIme(Skrbnik ime) {
+	public void setIme(String ime) {
 		this.ime = ime;
 	}
 
-	public Skrbnik getPriimek() {
+	public String getPriimek() {
 		return priimek;
 	}
 
-	public void setPriimek(Skrbnik priimek) {
+	public void setPriimek(String priimek) {
 		this.priimek = priimek;
 	}
 
-	public Skrbnik getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(Skrbnik email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
-	
 
+	@Override
+	public String toString() {
+		return "Skupnost [naziv=" + naziv + ", ime=" + ime + ", priimek=" + priimek + ", email=" + email + "]";
+	}
+
+	
 }

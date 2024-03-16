@@ -1,8 +1,8 @@
-/**
- * 
- */
 package si.um.feri.aiv.dao;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -12,6 +12,10 @@ public class SkupnostMemoryDao implements SkupnostDao {
 
 	Logger log=Logger.getLogger(SkupnostMemoryDao.class.toString());
 	
+	private SkupnostMemoryDao() {
+		skupnosti=Collections.synchronizedList(new ArrayList<Skupnost>());
+	}
+	
 	private static SkupnostMemoryDao instance=new SkupnostMemoryDao();
 
 	public static SkupnostMemoryDao getInstance() {
@@ -19,10 +23,6 @@ public class SkupnostMemoryDao implements SkupnostDao {
 	}
 	
 	private List<Skupnost> skupnosti;
-	
-	public SkupnostMemoryDao() {
-		// TODO Auto-generated constructor stub
-	}
 
 	@Override
 	public List<Skupnost> vrniVse() {
@@ -32,20 +32,30 @@ public class SkupnostMemoryDao implements SkupnostDao {
 
 	@Override
 	public Skupnost najdi(String naziv) {
-		// TODO Auto-generated method stub
+		log.info("DAO: iščem "+ naziv);
+		for (Skupnost s : skupnosti)
+			if (s.getNaziv().equals(naziv))
+				return s;
 		return null;
 	}
 
 	@Override
 	public void shrani(Skupnost s) {
-		// TODO Auto-generated method stub
-
+		log.info("DAO: shranjujem "+s);
+		if(najdi(s.getNaziv())!=null) {
+			log.info("DAO: urejam "+s);
+			izbrisi(s.getNaziv());
+		}
+		skupnosti.add(s);	
 	}
 
 	@Override
 	public void izbrisi(String naziv) {
-		// TODO Auto-generated method stub
-
+		log.info("DAO: brišem "+naziv);
+		for (Iterator<Skupnost> i = skupnosti.iterator(); i.hasNext();) {
+			if (i.next().getNaziv().equals(naziv))
+				i.remove();
+		}
 	}
 
 }
