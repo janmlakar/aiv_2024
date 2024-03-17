@@ -12,17 +12,36 @@
 	[ <a href="#{facesContext.externalContext.applicationContextPath}/faces/skupnosti.xhtml">Vse skupnosti</a> |
 	<hr />
 	
-	<h:dataTable value="#{beta.izbranaSkupnost.email}" var="s" rendered="#{not empty beta.izbranaSkupnost.email}">
+	<!-- nisem ziher če bom rabo -->
+	<f:metadata>
+		<f:viewParam name="naziv" value="#{beta.izbranNaziv}" />
+	</f:metadata>
+	
+	
+	<h:dataTable value="#{beta.izbranaSkupnost.lastniki}" var="l" rendered="#{not empty beta.izbranaSkupnost.lastniki}">
 		<f:facet name="header">
 			<h:outputText value="Lastniki"/>
 		</f:facet>
-		
+		<h:column>
+			Koordinate: <h:outputText value="#{l.koordinate}" rendered="#{l.urejanje eq false}" />
+			<h:inputText value="#{l.koordinate}" rendered="#{l.urejanje}" /> <br />
+			Ime: <h:outputText value="#{l.ime}" rendered="#{l.urejanje eq false}" />
+			<h:inputText value="#{l.ime}" rendered="#{l.urejanje}" /> <br />
+			Priimek: <h:outputText value="#{l.priimek}" rendered="#{l.urejanje eq false}" />
+			<h:inputText value="#{l.priimek}" rendered="#{l.urejanje}" /> <br />
+			E-mail: <h:outputText value="#{l.email}" rendered="#{l.urejanje eq false}" />
+			<h:inputText value="#{l.email}" rendered="#{l.urejanje}" /> <br />
+		</h:column>
+		<h:column>
+			<h:commandButton value="Shrani" actionListener="#{beta.shraniLastnika(l)}" rendered="#{l.urejanje}" />
+			<h:commandButton value="Izbriši" actionListener="#{beta.izbrisiLastnika(l)}" rendered="#{l.urejanje}" />
+			<h:commandButton value="Uredi" actionListener="#{beta.urediLastnika(l)}" rendered="#{l.urejanje eq false}" />
+		</h:column>
 	</h:dataTable>
-	<h:commandLink value="Dodaj lastnika" />
+	<h:commandLink value="Dodaj lastnika" actionListener="#{beta.dodajLastnika}"/>
 </h:form>
 
 </f:view>
 </h:body>
 
 </html>
-

@@ -1,5 +1,8 @@
 package si.um.feri.aiv.vao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.validation.constraints.NotBlank;
 
 public class Skupnost {
@@ -9,6 +12,7 @@ public class Skupnost {
 	private String ime;
 	private String priimek;
 	private String email;
+	private List<Lastnik> lastniki;
 	
 	public Skupnost() {
 		this("","","","");
@@ -19,6 +23,22 @@ public class Skupnost {
 		this.ime = ime;
 		this.priimek = priimek;
 		this.email = email;
+		lastniki = new ArrayList<Lastnik>();
+	}
+
+	public List<Lastnik> getLastniki() {
+		return lastniki;
+	}
+
+	public void setLastniki(List<Lastnik> lastniki) {
+		this.lastniki = lastniki;
+	}
+	
+	public int getMaxLastnikId() {
+		int ret=0;
+		for (Lastnik l:lastniki)
+			if (l.getId()>ret) ret=l.getId();
+		return ret;
 	}
 
 	public String getNaziv() {
@@ -57,6 +77,5 @@ public class Skupnost {
 	public String toString() {
 		return "Skupnost [naziv=" + naziv + ", ime=" + ime + ", priimek=" + priimek + ", email=" + email + "]";
 	}
-
 	
 }

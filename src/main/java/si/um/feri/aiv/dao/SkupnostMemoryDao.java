@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
+import si.um.feri.aiv.vao.Lastnik;
 import si.um.feri.aiv.vao.Skupnost;
 
 public class SkupnostMemoryDao implements SkupnostDao {
@@ -56,6 +57,28 @@ public class SkupnostMemoryDao implements SkupnostDao {
 			if (i.next().getNaziv().equals(naziv))
 				i.remove();
 		}
+	}
+	
+	@Override
+	public void izbrisiLastnika(int id, String naziv) {
+		log.info("DAO: brišem lastnika "+id+" skupnosti "+naziv);
+		Skupnost najdena=najdi(naziv);
+		if (najdena==null) return;
+		for (Iterator<Lastnik> i = najdena.getLastniki().iterator(); i.hasNext();) {
+			if (i.next().getId()==id)
+				i.remove();
+		}
+		
+	}
+
+	@Override
+	public void shraniLastnika(Lastnik lastnik, String naziv) {
+		log.info("DAO: shranjujem lastnika "+lastnik+" skupnosti "+naziv);
+		Skupnost najdena=najdi(naziv);
+		if (najdena==null) return;
+		izbrisiLastnika(lastnik.getId(), naziv);
+		lastnik.setId(najdena.getMaxLastnikId()+1);
+		najdena.getLastniki().add(lastnik);
 	}
 
 }

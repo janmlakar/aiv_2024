@@ -7,6 +7,7 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import si.um.feri.aiv.dao.SkupnostDao;
 import si.um.feri.aiv.dao.SkupnostMemoryDao;
+import si.um.feri.aiv.vao.Lastnik;
 import si.um.feri.aiv.vao.Skupnost;
 
 @Named("beta")
@@ -54,6 +55,28 @@ public class SkupnostJsfBean implements Serializable {
 
 	public void setIzbranaSkupnost(Skupnost izbranaSkupnost) {
 		this.izbranaSkupnost = izbranaSkupnost;
+	}
+	
+	public void dodajLastnika() throws Exception {
+		dao.shraniLastnika(new Lastnik(), izbranaSkupnost.getNaziv());
+		izbranaSkupnost=dao.najdi(izbranaSkupnost.getNaziv());
+	}
+	
+	public void shraniLastnika(Lastnik l) throws Exception {
+		l.setUrejanje(false);
+		dao.shraniLastnika(l, izbranaSkupnost.getNaziv());
+		izbranaSkupnost=dao.najdi(izbranaSkupnost.getNaziv());
+	}
+	
+	public void izbrisiLastnika(Lastnik l) throws Exception {
+		dao.izbrisiLastnika(l.getId(), izbranaSkupnost.getNaziv());
+		izbranaSkupnost=dao.najdi(izbranaSkupnost.getNaziv());
+	}
+	
+	public void urediLastnika(Lastnik l) throws Exception {
+		l.setUrejanje(true);
+		dao.shraniLastnika(l, izbranaSkupnost.getNaziv());
+		izbranaSkupnost=dao.najdi(izbranaSkupnost.getNaziv());
 	}
 
 }
