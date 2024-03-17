@@ -36,7 +36,7 @@
 			<h:link value="Uredi" outcome="skupnost">
 				<f:param name="naziv" value="#{s.naziv}" />
 			</h:link> | 
-			<h:commandLink value="Izbriši" actionListener="#{beta.izbrisiSkupnost(s)}" />
+			<h:commandLink value="Izbriši" actionListener="#{beta.izbrisiSkupnost(s)}" onclick="if (! confirm('Ali ste prepričani?') ) { return false;}; return true; " />
 		</h:column>
 	</h:dataTable>
 

@@ -34,7 +34,7 @@
 		</h:column>
 		<h:column>
 			<h:commandButton value="Shrani" actionListener="#{beta.shraniLastnika(l)}" rendered="#{l.urejanje}" />
-			<h:commandButton value="Izbriši" actionListener="#{beta.izbrisiLastnika(l)}" rendered="#{l.urejanje}" />
+			<h:commandButton value="Izbriši" actionListener="#{beta.izbrisiLastnika(l)}" rendered="#{l.urejanje}" onclick="if (! confirm('Ali ste prepričani?') ) { return false;}; return true; "/>
 			<h:commandButton value="Uredi" actionListener="#{beta.urediLastnika(l)}" rendered="#{l.urejanje eq false}" />
 		</h:column>
 	</h:dataTable>
